@@ -12,6 +12,8 @@ import VehicleSelection from './vehicleselection';
 export default function Search() {
   const { searchActive } = useContext(SearchContext);
   const [isFloating, setIsFloating] = useState(false);
+  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
+  const [isSearchHovered, setIsSearchHovered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -26,12 +28,29 @@ export default function Search() {
       setIsFloating(scrollY > threshold);
     };
 
+    const headerElement = document.querySelector('header');
+
+    const handleHeaderMouseEnter = () => setIsHeaderHovered(true);
+    const handleHeaderMouseLeave = () => setIsHeaderHovered(false);
+
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    if (headerElement) {
+      headerElement.addEventListener('mouseenter', handleHeaderMouseEnter);
+      headerElement.addEventListener('mouseleave', handleHeaderMouseLeave);
+    }
+
     const user = localStorage.getItem('user');
     setIsLoggedIn(!!user);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+
+      if (headerElement) {
+        headerElement.removeEventListener('mouseenter', handleHeaderMouseEnter);
+        headerElement.removeEventListener('mouseleave', handleHeaderMouseLeave);
+      }
     };
   }, []);
 
@@ -82,7 +101,9 @@ export default function Search() {
         searchActive
           ? 'bg-white rounded-none xl:h-[110px]'
           : 'bg-white rounded-[20px] py-6 xl:pr-4 xl:h-[98px]'
-      } hidden xl:block w-full relative shadow-lg ${isFloating ? 'fixed top-0 left-1/2 transform -translate-x-1/2 z-1000' : ''}`}>
+      } hidden xl:block w-full relative shadow-lg transition-all duration-300 ${isFloating ? 'fixed top-0 left-1/2 transform -translate-x-1/2 z-1000' : ''} ${isFloating && !isHeaderHovered && !isSearchHovered ? 'opacity-0 pointer-events-none -translate-y-[140%]' : 'opacity-100 translate-y-0'}`}
+      onMouseEnter={() => setIsSearchHovered(true)}
+      onMouseLeave={() => setIsSearchHovered(false)}>
       <div className={`flex h-full ${searchActive && 'container mx-auto'}`}>
         <LocationSelection onSelect={handleLocationSelect} />
         <VehicleSelection onSelect={handleVehicleSelect} />
