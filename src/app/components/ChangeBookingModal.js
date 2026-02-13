@@ -46,7 +46,6 @@ const LocationAutocomplete = ({ value, onChange, label, placeholder, disabled })
       const data = await response.json()
       setSuggestions(data.features || [])
     } catch (error) {
-      console.error('Error fetching suggestions:', error)
       setSuggestions([])
     }
     setIsLoading(false)
@@ -347,7 +346,6 @@ export default function ChangeBookingModal({ isOpen, onClose, bookingData, user_
         onClose()
       }, 3000)
     } catch (error) {
-      console.error('Error updating booking:', error)
       setToast({ message: 'Failed to update booking. Please try again.', type: 'error' })
       setShowChangeConfirmation(false)
     }
@@ -389,11 +387,6 @@ export default function ChangeBookingModal({ isOpen, onClose, bookingData, user_
             }, 3000);
         }
     } catch (error) {
-        console.error('Cancellation error details:', {
-            status: error.response?.status,
-            data: error.response?.data,
-            message: error.message,
-        });
         const errorMessage = error.response?.data?.message || 'Failed to cancel booking. Please try again.';
         setToast({ message: errorMessage, type: 'error' });
     }

@@ -41,7 +41,6 @@ const Modal = ({ isOpen, onClose }) => {
         setIsButtonDisabled(false);
       }
     } catch (error) {
-      console.error('Error:', error);
       setMessage('An error occurred. Please try again.');
       setIsSuccess(false);
       setIsButtonDisabled(false);
@@ -133,7 +132,6 @@ export default function SignIn() {
         setIsSuccess(false);
       }
     } catch (error) {
-      console.error('Error:', error);
       setMessage('An error occurred. Please try again.');
       setIsSuccess(false);
     } finally {
@@ -184,6 +182,7 @@ export default function SignIn() {
                 width={450}
                 height={82}
                 layout="fixed"
+                style={{ height: 'auto' }}
               />
             </motion.div>
             <motion.h2

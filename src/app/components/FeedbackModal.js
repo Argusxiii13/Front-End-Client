@@ -45,8 +45,6 @@ export default function FeedbackModal({ isOpen, onClose, user_id, booking_id, bo
       description: feedback,
     };
 
-    console.log("Sending feedback data:", feedbackData);
-
     setIsSubmitting(true);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/feedback/submit`, {
@@ -62,15 +60,13 @@ export default function FeedbackModal({ isOpen, onClose, user_id, booking_id, bo
         throw new Error(errorResponse.message || 'Failed to submit feedback');
       }
 
-      const result = await response.json();
-      console.log(result.message);
+      await response.json();
 
       // Reset form
       setRating(0);
       setFeedback('');
       onClose();
     } catch (error) {
-      console.error('Error submitting feedback:', error);
       alert("There was an error submitting your feedback: " + error.message);
     } finally {
       setIsSubmitting(false);

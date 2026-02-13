@@ -21,7 +21,6 @@ export default function VehicleSelection({ onSelect }) {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/cars`);
       setCars(response.data);
     } catch (error) {
-      console.error('Could not load car data:', error);
     }
   };
 

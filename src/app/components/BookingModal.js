@@ -43,7 +43,6 @@ const LocationAutocomplete = ({ value, onChange, label, placeholder }) => {
       const data = await response.json()
       setSuggestions(data.features || [])
     } catch (error) {
-      console.error('Error fetching suggestions:', error)
       setSuggestions([])
     }
     setIsLoading(false)
@@ -266,7 +265,6 @@ export default function BookingModal({ isOpen, onClose, carDetails, user_id }) {
       setShowConfirmation(false);
       resetForm();
     } catch (error) {
-      console.error('Error creating booking:', error);
       const errorMsg = error.response ? error.response.data.message : 'Error creating booking';
       setToast({ message: errorMsg, type: 'error' });
       setShowConfirmation(false);

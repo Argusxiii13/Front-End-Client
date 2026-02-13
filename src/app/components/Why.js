@@ -43,6 +43,7 @@ export default function Why() {
             height={320} 
             alt='Car showcase'
             className='w-full max-w-[300px] md:max-w-[500px] h-auto'
+            style={{ height: 'auto' }}
           />
         </motion.div>
         {/* grid items */}

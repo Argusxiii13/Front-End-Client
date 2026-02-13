@@ -59,7 +59,6 @@ export default function Component() {
         try {
             userData = JSON.parse(userStr);
         } catch (e) {
-            console.error('Error parsing user data:', e);
         }
 
         const loggedIn = isLoggedInStr === 'true' && userData && userData.id;
@@ -88,7 +87,6 @@ export default function Component() {
             setNotifications(mappedNotifications);
             setUnreadCount(mappedNotifications.filter(notif => !notif.read).length);
         } catch (error) {
-            console.error('Error fetching notifications:', error);
         }
     };
 
@@ -100,11 +98,9 @@ export default function Component() {
                 const bookingsData = await response.json();
                 return bookingsData;
             } else {
-                console.error('Failed to fetch booking history:', response.status);
                 return [];
             }
         } catch (error) {
-            console.error('Error fetching booking history:', error);
             return [];
         }
     };
@@ -126,7 +122,6 @@ export default function Component() {
             setNotifications(mappedNotifications);
             setUnreadCount(mappedNotifications.filter(notif => !notif.read).length);
         } catch (error) {
-            console.error('Error fetching notifications:', error);
         }
     };
 
@@ -189,13 +184,11 @@ export default function Component() {
             });
             markAsRead(notificationId); // Update local state
         } catch (error) {
-            console.error('Error marking notification as read:', error);
         }
     };
 
     const handleNotificationClick = async (notification) => {
         const booking_id = notification.booking_id; // Use the new booking_id directly
-        console.log(booking_id);
         if (booking_id) {
             try {
                 // Fetch booking details
@@ -215,7 +208,6 @@ export default function Component() {
                 setHasFeedback(feedbackData.hasFeedback); // Update feedback status
     
             } catch (error) {
-                console.error('Error fetching booking details or feedback status:', error);
             }
         }
     
@@ -256,8 +248,7 @@ export default function Component() {
               }
             }
           }
-        } catch (error) {
-          console.error('Error fetching user data:', error)
+                } catch (error) {
         }
       }
     useEffect(() => {
@@ -352,7 +343,6 @@ export default function Component() {
     async function handlePriceConfirmation(notification, user_id) {
         // Check if notification exists
         if (!notification) {
-            console.error('Invalid notification format.');
             return; // Exit if notification is invalid
         }
     
@@ -360,14 +350,12 @@ export default function Component() {
         const booking_id = notification.booking_id; // Use the new booking_id property
     
         if (!booking_id) {
-            console.error('Booking ID not found in the notification.');
             return; // Exit if booking ID is not found
         }
     
         // Convert booking_id to an integer
         const id = parseInt(booking_id, 10);
         if (isNaN(id)) {
-            console.error('Invalid booking ID:', booking_id);
             return; // Exit if conversion fails
         }
     
@@ -385,7 +373,6 @@ export default function Component() {
                 }),
             });
         } catch (error) {
-            console.error('Error confirming price:', error);
         }
     
         // Close the modal after the action
@@ -402,7 +389,6 @@ export default function Component() {
         const booking_id = notification.booking_id; // Get the booking ID from the notification
     
         if (!booking_id) {
-            console.error('Booking ID not found in the notification.');
             alert("Booking ID is required.");
             return; // Exit if booking ID is not present
         }
@@ -422,7 +408,6 @@ export default function Component() {
             setSelectedBookingId(bookingData.booking_id); 
             setFeedbackModalOpen(true); // Open the FeedbackModal
         } catch (error) {
-            console.error('Error fetching booking details:', error);
             alert("There was an error fetching booking details: " + error.message);
         }
     };
@@ -499,11 +484,9 @@ export default function Component() {
                 setBookingDetails(bookingData); // Set the fetched booking data
                 setIsBookingDetailsModalOpen(true); // Open the booking details modal
             } catch (error) {
-                console.error('Error fetching booking details:', error);
                 alert("There was an error fetching booking details: " + error.message);
             }
         } else {
-            console.error('Booking ID is not available in the selected notification.');
             alert("Booking ID is required to view booking details.");
         }
     };
@@ -524,6 +507,7 @@ export default function Component() {
                             height={80} 
                             alt='AutoConnect' 
                             className='w-auto h-16 md:h-20'
+                            style={{ width: 'auto' }}
                         />
                     </Link>
 

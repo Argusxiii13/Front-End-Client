@@ -53,7 +53,6 @@ export default function Component({
       })
       onClose()
     } catch (error) {
-      console.error('Payment completion failed:', error)
     } finally {
       setIsSubmitting(false)
     }

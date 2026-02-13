@@ -143,7 +143,6 @@ const CarSlider = () => {
         const data = await response.json();
         setCars(data);
       } catch (error) {
-        console.error("Error fetching car data:", error);
       }
     };
 
@@ -154,7 +153,6 @@ const CarSlider = () => {
         const data = await response.json();
         setRatings(data);
       } catch (error) {
-        console.error("Error fetching car ratings:", error);
       }
     };
 

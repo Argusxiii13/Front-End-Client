@@ -55,11 +55,6 @@ export default function Search() {
   }, []);
 
   const handleSearchClick = () => {
-    console.log('Location:', location);
-    console.log('Selected Vehicle:', selectedVehicle);
-    console.log('Start Date:', dates.startDate);
-    console.log('End Date:', dates.endDate);
-  
     if (isLoggedIn) {
       const searchData = {
         location,

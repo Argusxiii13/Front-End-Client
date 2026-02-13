@@ -31,7 +31,6 @@ export default function DateSelection({ selectedVehicle, onSelect }) {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/occupied-dates/${carId}`);
       setOccupiedDates(response.data);
     } catch (error) {
-      console.error('Could not load occupied dates:', error);
       setOccupiedDates([]);
     }
   };

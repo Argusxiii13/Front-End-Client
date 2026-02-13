@@ -60,7 +60,6 @@ export default function ProfilePage() {
         }
       }
     } catch (error) {
-      console.error('Error fetching user data:', error)
     }
   }
 
@@ -76,7 +75,6 @@ export default function ProfilePage() {
         }
       }
     } catch (error) {
-      console.error('Error fetching bookings:', error)
     }
   }
 
@@ -151,7 +149,6 @@ export default function ProfilePage() {
         }, 100);
       }
     } catch (error) {
-      console.error('Error updating user data:', error);
       setShowToast(false);
       setTimeout(() => {
         setToastMessage('Error updating profile');
@@ -170,18 +167,11 @@ export default function ProfilePage() {
     try {
       const userStr = localStorage.getItem('user');
       const user = JSON.parse(userStr);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/profile/upload-picture/${user.id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/profile/upload-picture/${user.id}`, {
         method: 'POST',
         body: formData,
       });
-
-      if (response.ok) {
-        console.log('Profile picture uploaded successfully');
-      } else {
-        console.error('Failed to upload profile picture');
-      }
     } catch (error) {
-      console.error('Error uploading profile picture:', error);
     }
   };
 

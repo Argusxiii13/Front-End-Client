@@ -40,7 +40,6 @@ useEffect(() => {
     const searchDataStr = localStorage.getItem('searchData');
     if (searchDataStr) {
       const searchData = JSON.parse(searchDataStr);
-      console.log(searchData);
       
       // Find the matching car if vehicleId was provided
       if (searchData.vehicleId) {
@@ -103,7 +102,6 @@ useEffect(() => {
         try {
             userData = JSON.parse(userStr);
         } catch (e) {
-            console.error('Error parsing user data:', e);
         }
 
         const loggedIn = isLoggedInStr === 'true' && userData && userData.id;
@@ -121,7 +119,6 @@ useEffect(() => {
       }
   
       const data = await response.json();
-      console.log('Fetched cars:', data); // Log the fetched data
   
       const carsWithImages = data.map(car => ({
         ...car,
@@ -131,7 +128,6 @@ useEffect(() => {
       setAllCars(carsWithImages);
       setFilteredCars(carsWithImages);
     } catch (error) {
-      console.error('Error fetching cars:', error);
       alert('Failed to fetch cars. Please try again later.');
     }
   };

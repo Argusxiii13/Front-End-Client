@@ -153,7 +153,6 @@ export default function SignUp() {
   
     try {
       const userData = JSON.stringify({ name, email, mobileNumber, password })
-      console.log('Sending user data:', userData)
   
       const apiResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/signup`, {
         method: 'POST',
@@ -165,13 +164,11 @@ export default function SignUp() {
   
       if (!apiResponse.ok) {
         const errorData = await apiResponse.json()
-        console.error('API Error Response:', errorData)
         setMessage(errorData.message || 'An error occurred while creating the user.')
         return
       }
   
-      const data = await apiResponse.json()
-      console.log('Signup successful:', data)
+      await apiResponse.json()
   
       setMessage('Sign up successful!')
   
@@ -189,7 +186,6 @@ export default function SignUp() {
         router.push('/signin');
       }, 2000);
     } catch (error) {
-      console.error('Error during signup:', error)
       setMessage(`Error during signup: ${error.message || 'An unexpected error occurred'}`)
       setIsSuccess(false)
     } finally {
@@ -236,6 +232,7 @@ export default function SignUp() {
                 width={450}
                 height={82}
                 layout="fixed"
+                style={{ height: 'auto' }}
               />
             </motion.div>
             <motion.h2

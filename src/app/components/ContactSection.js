@@ -29,9 +29,7 @@ export default function ContactSection() {
       captchaSolutionRef.current = solution;
     };
 
-    window.errorCallback = (error) => {
-      console.error("Captcha error:", error);
-    };
+    window.errorCallback = () => {};
 
     document.body.appendChild(script);
 
@@ -135,7 +133,6 @@ export default function ContactSection() {
         setIsSuccess(false);
       }
     } catch (error) {
-      console.error('Error submitting inquiry:', error);
       setNotification('An error occurred while submitting your inquiry.');
       setIsSuccess(false);
     } finally {

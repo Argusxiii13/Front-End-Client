@@ -62,7 +62,6 @@ export default function EditPassword() {
         setShowToast(true)
       }
     } catch (error) {
-      console.error('Error updating password:', error)
       setToastMessage('Error updating password')
       setToastType('error')
       setShowToast(true)

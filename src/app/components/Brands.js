@@ -23,32 +23,35 @@ export default function Brands() {
         <div className='grid grid-cols-3 gap-6 place-items-center xl:flex xl:flex-wrap xl:gap-x-6 xl:justify-between'>
           <div>
             <Image
-              src={'icons/brands/toyota.svg'}
+              src={'/icons/brands/toyota.svg'}
               width={85}
               height={32}
               alt=''
+              style={{ width: '85px', height: 'auto' }}
             />
           </div>
           <div>
             <Image
-              src={'icons/brands/honda.svg'}
+              src={'/icons/brands/honda.svg'}
               width={85}
               height={32}
               alt=''
+              style={{ width: '85px', height: 'auto' }}
             />
           </div>
           <div>
-            <Image src={'icons/brands/hyundai.svg'} width={85} height={32} alt='' />
+            <Image src={'/icons/brands/hyundai.svg'} width={85} height={32} alt='' style={{ width: '85px', height: 'auto' }} />
           </div>
           <div>
-            <Image src={'icons/brands/mitsubishi.svg'} width={85} height={32} alt='' />
+            <Image src={'/icons/brands/mitsubishi.svg'} width={85} height={32} alt='' style={{ width: '85px', height: 'auto' }} />
           </div>
           <div>
             <Image
-              src={'icons/brands/nissan.svg'}
+              src={'/icons/brands/nissan.svg'}
               width={85}
               height={32}
               alt=''
+              style={{ width: '85px', height: 'auto' }}
             />
           </div>
         </div>

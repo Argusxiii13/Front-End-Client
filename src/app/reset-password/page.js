@@ -53,7 +53,6 @@ export default function PasswordReset() {
         setIsSuccess(false);
       }
     } catch (error) {
-      console.error('Error:', error);
       setMessage('An error occurred. Please try again.');
       setIsSuccess(false);
     }
@@ -95,6 +94,7 @@ export default function PasswordReset() {
                 width={450}
                 height={82}
                 layout="fixed"
+                style={{ height: 'auto' }}
               />
             </motion.div>
             <motion.h2
