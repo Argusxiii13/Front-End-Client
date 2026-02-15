@@ -1,13 +1,5 @@
 'use client';
 
-import { useContext } from 'react';
-
-// components
-import Search from './Search';
-
-// context
-import { SearchContext } from '../context/search';
-
 // next image
 import Image from 'next/image';
 
@@ -18,7 +10,6 @@ import { motion, easeInOut } from 'framer-motion';
 import { fadeIn } from '/variants';
 
 export default function Hero() {
-  const { searchActive } = useContext(SearchContext);
   return (
     <section className='h-screen xl:h-[90vh] bg-[#b2b7c2]/10' id='home'>
       <div className='container mx-auto h-full xl:pt-10'>
@@ -72,27 +63,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-      {searchActive ? (
-        <motion.div
-          initial={{ y: '-100%' }}
-          animate={{ y: 0 }}
-          transition={{ ease: easeInOut }}
-          className='fixed top-[80px] z-10 w-full max-w-[1920px]'
-        >
-          <Search />
-        </motion.div>
-      ) : (
-        <div className='-mt-12 w-full max-w-[1300px] mx-auto'>
-          <motion.div
-            variants={fadeIn('up', 0.8)}
-            initial='hidden'
-            whileInView={'show'}
-            viewport={{ once: false, amount: 0.2 }}
-          >
-            <Search />
-          </motion.div>
-        </div>
-      )}
     </section>
   );
 }

@@ -8,6 +8,7 @@ import Testimonial from './components/Testimonial';
 import Cta from './components/Cta';
 import Footer from './components/Footer';
 import BackToTopBtn from './components/BackToTopBtn';
+import Search from './components/Search';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Cta />
       <Footer />
       <BackToTopBtn />
+      <Search />
       {/* <div className='h-[4000px]'></div> */}
     </main>
   );

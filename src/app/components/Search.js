@@ -1,7 +1,6 @@
 'use client';
 
-import { useContext, useState, useEffect } from 'react';
-import { SearchContext } from '../context/search';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 // components
@@ -10,10 +9,6 @@ import DateSelection from './DateSelection';
 import VehicleSelection from './vehicleselection';
 
 export default function Search() {
-  const { searchActive } = useContext(SearchContext);
-  const [isFloating, setIsFloating] = useState(false);
-  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
-  const [isSearchHovered, setIsSearchHovered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -22,36 +17,8 @@ export default function Search() {
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const threshold = 200;
-      setIsFloating(scrollY > threshold);
-    };
-
-    const headerElement = document.querySelector('header');
-
-    const handleHeaderMouseEnter = () => setIsHeaderHovered(true);
-    const handleHeaderMouseLeave = () => setIsHeaderHovered(false);
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    if (headerElement) {
-      headerElement.addEventListener('mouseenter', handleHeaderMouseEnter);
-      headerElement.addEventListener('mouseleave', handleHeaderMouseLeave);
-    }
-
     const user = localStorage.getItem('user');
     setIsLoggedIn(!!user);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-
-      if (headerElement) {
-        headerElement.removeEventListener('mouseenter', handleHeaderMouseEnter);
-        headerElement.removeEventListener('mouseleave', handleHeaderMouseLeave);
-      }
-    };
   }, []);
 
   const handleSearchClick = () => {
@@ -92,25 +59,15 @@ export default function Search() {
   };
 
   return (
-    <div className={`${
-        searchActive
-          ? 'bg-white rounded-none xl:h-[110px]'
-          : 'bg-white rounded-[20px] py-6 xl:pr-4 xl:h-[98px]'
-      } hidden xl:block w-full relative shadow-lg transition-all duration-300 ${isFloating ? 'fixed top-0 left-1/2 transform -translate-x-1/2 z-1000' : ''} ${isFloating && !isHeaderHovered && !isSearchHovered ? 'opacity-0 pointer-events-none -translate-y-[140%]' : 'opacity-100 translate-y-0'}`}
-      onMouseEnter={() => setIsSearchHovered(true)}
-      onMouseLeave={() => setIsSearchHovered(false)}>
-      <div className={`flex h-full ${searchActive && 'container mx-auto'}`}>
+    <div className='hidden xl:block w-full fixed bottom-6 left-1/2 transform -translate-x-1/2 max-w-[1300px] z-[999] bg-white rounded-[20px] py-6 xl:pr-4 xl:h-[98px] shadow-lg transition-all duration-300'>
+      <div className='flex h-full'>
         <LocationSelection onSelect={handleLocationSelect} />
         <VehicleSelection onSelect={handleVehicleSelect} />
         <DateSelection onSelect={handleDateSelect} selectedVehicle={selectedVehicle} />
         <div className='xl:h-full flex items-center px-6 xl:px-0'>
           <button
             onClick={handleSearchClick}
-            className={`${
-              searchActive
-                ? 'btn btn-sm btn-accent xl:w-[164px]'
-                : 'btn btn-lg btn-accent xl:w-[184px]'
-            }`}>
+            className='btn btn-lg btn-accent xl:w-[184px]'>
             Proceed
           </button>
         </div>

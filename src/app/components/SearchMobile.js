@@ -7,7 +7,6 @@ import LocationSelection from './LocationSelection';
 import VehicleSelection from './vehicleselection';
 
 export default function SearchMobile() {
-  const [isFloating, setIsFloating] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -16,19 +15,8 @@ export default function SearchMobile() {
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const threshold = 200;
-      setIsFloating(scrollY > threshold);
-    };
-
-    window.addEventListener('scroll', handleScroll);
     const user = localStorage.getItem('user');
     setIsLoggedIn(!!user);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   const handleSearchClick = () => {
@@ -69,7 +57,7 @@ export default function SearchMobile() {
   };
 
   return (
-    <div className={`xl:hidden font-medium ${isFloating ? 'fixed top-0 left-0 right-0 z-1000 bg-white shadow-lg' : ''}`}>
+    <div className='xl:hidden font-medium'>
       <div className='container mx-auto'>
         <div className='flex flex-col gap-y-4'>
           <LocationSelection onSelect={handleLocationSelect} />
