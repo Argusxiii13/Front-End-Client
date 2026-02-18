@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Edit, Home } from 'lucide-react'
 import Toast from './animated-toast'
 import ChangeBookingModal from './ChangeBookingModal'
+import { getSocket } from '../lib/socket'
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false)
@@ -35,6 +36,27 @@ export default function ProfilePage() {
   useEffect(() => {
     fetchUserData()
     fetchBookings()
+  }, [])
+
+  useEffect(() => {
+    const userStr = localStorage.getItem('user')
+    const currentUser = JSON.parse(userStr)
+
+    if (!currentUser?.id) return
+
+    const socket = getSocket()
+    socket.emit('join-user-room', currentUser.id)
+
+    const onRealtimeUpdate = (payload) => {
+      if (!payload || String(payload.user_id) !== String(currentUser.id)) return
+      fetchBookings()
+    }
+
+    socket.on('client:data-updated', onRealtimeUpdate)
+
+    return () => {
+      socket.off('client:data-updated', onRealtimeUpdate)
+    }
   }, [])
 
   const fetchUserData = async () => {

@@ -10,6 +10,7 @@ import SearchMobile from './SearchMobile';
 import PaymentModal from './PaymentModal'
 import FeedbackModal from './FeedbackModal';
 import BookingHistoryModal from './BookingHistoryModal';
+import { getSocket } from '../lib/socket';
 
 export default function Component() {
     const pathname = usePathname();
@@ -255,6 +256,57 @@ export default function Component() {
         checkLoginStatus();
         fetchUserData();
     }, []);
+
+    useEffect(() => {
+        const syncLoginState = () => {
+            checkLoginStatus();
+        };
+
+        const handleVisibilityChange = () => {
+            if (!document.hidden) {
+                syncLoginState();
+            }
+        };
+
+        window.addEventListener('storage', syncLoginState);
+        window.addEventListener('focus', syncLoginState);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        return () => {
+            window.removeEventListener('storage', syncLoginState);
+            window.removeEventListener('focus', syncLoginState);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!isLoggedIn || !user?.id) {
+            setNotifications([]);
+            setUnreadCount(0);
+            return;
+        }
+
+        handleFetchNotifications();
+    }, [isLoggedIn, user?.id]);
+
+    useEffect(() => {
+        if (!isLoggedIn || !user?.id) return;
+
+        const socket = getSocket();
+        socket.emit('join-user-room', user.id);
+
+        const onRealtimeUpdate = (payload) => {
+            if (!payload || String(payload.user_id) !== String(user.id)) return;
+            handleFetchNotifications();
+            fetchUserData();
+        };
+
+        socket.on('client:data-updated', onRealtimeUpdate);
+
+        return () => {
+            socket.off('client:data-updated', onRealtimeUpdate);
+        };
+    }, [isLoggedIn, user?.id]);
 
     useEffect(() => {
         const handleScroll = () => {
