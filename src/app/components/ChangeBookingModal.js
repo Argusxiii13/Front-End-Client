@@ -336,7 +336,7 @@ export default function ChangeBookingModal({ isOpen, onClose, bookingData, user_
         throw new Error("Booking ID is required for updating the booking.")
       }
 
-      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}api/booking/update/${bookingData.booking_id}`, updatedBookingData)
+      await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}api/bookings/update/${bookingData.booking_id}`, updatedBookingData)
       setToast({ message: 'Booking updated successfully!', type: 'success' })
       setShowChangeConfirmation(false)
 
@@ -403,7 +403,7 @@ export default function ChangeBookingModal({ isOpen, onClose, bookingData, user_
 const isEditable = !(bookingData.status === "Finished" || bookingData.status === "Cancelled");
 
 return (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4 overflow-y-auto">
+  <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-[9999] p-4 overflow-y-auto">
     <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-blue-600">

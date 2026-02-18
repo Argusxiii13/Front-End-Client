@@ -74,7 +74,7 @@ export default function Search() {
       </div>
 
       {isConfirmationModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
           <div className="bg-white p-6 rounded-md shadow-md">
             <h2 className="text-lg font-bold mb-4">Confirmation</h2>
             <p>You need to Sign In to Book a Vehicle.</p>

@@ -56,8 +56,8 @@ const Modal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-center ${isOpen ? 'block' : 'hidden'}`}>
-      <div className="fixed inset-0 bg-black opacity-50" onClick={handleClose}></div>
+    <div className={`fixed inset-0 z-[9999] flex items-center justify-center ${isOpen ? 'block' : 'hidden'}`}>
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={handleClose}></div>
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

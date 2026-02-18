@@ -74,7 +74,7 @@ export default function FeedbackModal({ isOpen, onClose, user_id, booking_id, bo
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
         <div className="p-6">
           <h2 className="text-2xl font-bold mb-4">Rate Your Experience</h2>

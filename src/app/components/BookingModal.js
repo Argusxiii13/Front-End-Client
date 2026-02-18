@@ -304,7 +304,7 @@ export default function BookingModal({ isOpen, onClose, carDetails, user_id }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4 overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-[9999] p-4 overflow-y-auto">
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-blue-600">Rent a car at low prices</h2>

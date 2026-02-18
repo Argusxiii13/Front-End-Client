@@ -5,8 +5,8 @@ import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaCarSide, FaUser } from 'react
 
 export function ChangeConfirmationDialog({ isOpen, onClose, onConfirm, bookingDetails, originalBooking }) {
   return (
-    <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+    <Dialog open={isOpen} onClose={onClose} className="relative z-[9999]">
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="mx-auto max-w-lg rounded-lg bg-white p-6">
           <Dialog.Title className="text-xl font-semibold leading-6 text-gray-900 mb-4 border-b pb-3">

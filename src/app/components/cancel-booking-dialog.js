@@ -11,8 +11,8 @@ export function CancelBookingDialog({ isOpen, onClose, onConfirm }) {
   }
 
   return (
-    <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+    <Dialog open={isOpen} onClose={onClose} className="relative z-[9999]">
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" aria-hidden="true" />
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel className="mx-auto max-w-md rounded-lg bg-white p-6">
           <Dialog.Title className="text-lg font-semibold text-gray-900 mb-4">

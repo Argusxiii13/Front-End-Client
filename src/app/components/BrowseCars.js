@@ -272,7 +272,7 @@ useEffect(() => {
         )}
 
       {isConfirmationModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 animate-fadeIn">
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full mx-4 animate-scaleUp">
             <h2 className="text-2xl font-bold mb-4 text-gray-900">Sign In Required</h2>
             <p className="text-gray-600 mb-6">Please sign in to your account to book this vehicle.</p>

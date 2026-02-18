@@ -449,7 +449,7 @@ export default function Component() {
     
         // Fetch booking details using the booking ID
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/booking/data-retrieve/${booking_id}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/bookings/data-retrieve/${booking_id}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch booking details');
             }
@@ -486,7 +486,7 @@ export default function Component() {
         String(bookingData.booking_id).padStart(11, '0')
     
         return (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-[9999]">
                 <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md">
                     <h2 className="text-lg font-semibold">Booking Details</h2>
                     <p className="mt-2">Booking ID: {String(bookingData.booking_id).padStart(11, '0')}</p>
@@ -528,7 +528,7 @@ export default function Component() {
     
         if (booking_id) {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/booking/data-retrieve/${booking_id}`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/bookings/data-retrieve/${booking_id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch booking details');
                 }
@@ -823,7 +823,7 @@ export default function Component() {
 
 {/* Notification Modal */}
 {modalOpen && selectedNotification && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-[9999]">
           <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md">
             <h2 className="text-lg font-semibold">{selectedNotification.title}</h2>
             <p className="mt-2 text-gray-700">{selectedNotification.message}</p>

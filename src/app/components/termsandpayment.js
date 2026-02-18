@@ -59,7 +59,7 @@ export default function Component({
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm p-4">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden">
         <div className="p-4 sm:p-6 border-b">
           <h2 className="text-xl sm:text-2xl font-bold">
