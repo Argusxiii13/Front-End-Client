@@ -26,15 +26,14 @@ export default function PasswordReset() {
     }
 
     try {
-      // You would typically get the reset token from the URL query parameters
-      const resetToken = new URLSearchParams(window.location.search).get('token');
+      const token = new URLSearchParams(window.location.search).get('token');
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ newPassword, resetToken }),
+        body: JSON.stringify({ newPassword, token }),
       });
 
       const data = await response.json();
